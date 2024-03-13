@@ -1,5 +1,7 @@
 package homeworks.FPP.Assignment8.Prob3;
 
+import java.util.Objects;
+
 class Marketing {
     private String employeeName;
     private String productName;
@@ -38,5 +40,10 @@ class Marketing {
         return Double.compare(marketing.salesAmount, salesAmount) == 0 &&
                 employeeName.equals(marketing.employeeName) &&
                 productName.equals(marketing.productName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(employeeName, productName, salesAmount);
     }
 }
