@@ -13,19 +13,29 @@ public class LinkedQueue {
     Node front, rear;
     int count;
 
+    // public void enqueue(Object item) {
+    // Node p = new Node(item);
+    // if (front == null) {
+    // front = rear = p;
+    // // rear.next = null;
+    // } else if (front == rear) {
+    // rear = p;
+    // front.next = rear;
+    // // rear.next = null;
+    // } else {
+    // rear.next = p;
+    // rear = p;
+    // rear.next = null;
+    // }
+    // count++;
+    // }
     public void enqueue(Object item) {
         Node p = new Node(item);
         if (front == null) {
             front = rear = p;
-            rear.next = null;
-        } else if (front == rear) {
-            rear = p;
-            front.next = rear;
-            rear.next = null;
         } else {
             rear.next = p;
             rear = p;
-            rear.next = null;
         }
         count++;
     }
