@@ -64,30 +64,6 @@ public class BinarySearchTree {
         return node;
     }
 
-    public void inOrderTraverse(TreeNode node) {
-        if (node != null) {
-            inOrderTraverse(node.left);
-            System.out.println(node.val + " ");
-            inOrderTraverse(node.right);
-        }
-    }
-
-    public void preOrderTraverse(TreeNode node) {
-        if (node != null) {
-            System.out.println(node.val + " ");
-            inOrderTraverse(node.left);
-            inOrderTraverse(node.right);
-        }
-    }
-
-    public void postOrderTraverse(TreeNode node) {
-        if (node != null) {
-            inOrderTraverse(node.left);
-            inOrderTraverse(node.right);
-            System.out.println(node.val + " ");
-        }
-    }
-
     public TreeNode deleteNode(TreeNode node, int key) {
         // return null if root is null
         if (node == null) {
@@ -131,6 +107,30 @@ public class BinarySearchTree {
             curr = curr.left;
         }
         return curr;
+    }
+
+    public void inOrderTraverse(TreeNode node) {
+        if (node != null) {
+            inOrderTraverse(node.left);
+            System.out.println(node.val + " ");
+            inOrderTraverse(node.right);
+        }
+    }
+
+    public void preOrderTraverse(TreeNode node) {
+        if (node != null) {
+            System.out.println(node.val + " ");
+            inOrderTraverse(node.left);
+            inOrderTraverse(node.right);
+        }
+    }
+
+    public void postOrderTraverse(TreeNode node) {
+        if (node != null) {
+            inOrderTraverse(node.left);
+            inOrderTraverse(node.right);
+            System.out.println(node.val + " ");
+        }
     }
 
     @Override

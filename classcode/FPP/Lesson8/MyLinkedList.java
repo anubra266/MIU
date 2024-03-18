@@ -74,8 +74,9 @@ public class MyLinkedList {
         l.addAtHead(300);
         l.addAtHead(900);
         l.addAtIndex(1, 200);
-        System.out.println(l.get(1));
-        l.deleteAtIndex(2);
-        l.deleteAtIndex(1);
+       
+        // System.out.println(l.get(1));
+        // l.deleteAtIndex(2);
+        // l.deleteAtIndex(1);
     }
 }

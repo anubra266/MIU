@@ -7,8 +7,8 @@ public class MyHashTable {
     private int numberOfElements;
     private static final int INITIAL_SIZE = 19;
     private int tableSize;
-    // TO avoid collision with same index, every index is implemented with linked
-    // lists
+    // To avoid collision iwth same index, every index is implemented with
+    // LinkedList
     private LinkedList[] table;
 
     public MyHashTable() {
@@ -18,57 +18,63 @@ public class MyHashTable {
     public MyHashTable(int tableSize) {
         this.tableSize = tableSize;
         table = new LinkedList[tableSize];
-        numberOfElements = 0;
     }
 
+    // First Try
     public void put(Object key, Object value) {
         // disallow null keys
         if (key == null)
             return;
-        // get the "big" corresponding to the object
+        // get the "big" integer corresponding to the object
         // assumes key is not null
-        int hashCode = key.hashCode();
-        // compress dow to a table slot
-        int hashValue = hash(hashCode);
+        int hashcode = key.hashCode();
+        // compress down to a table slot
+        int hashValue = hash(hashcode);
         // create the entry
         Entry e = new Entry(key, value);
-        boolean keyAlreadyInUse = false;
-        if (table[hashValue] != null) {
-            for (Object ob : table[hashValue]) {
-                Entry ent = (Entry) ob;
-                if (ent.key.equals(key)) {
-                    keyAlreadyInUse = true;
-                    ent.value = value; // update value for this Entry
-                    return;
-                }
+        // boolean keyAlreadyInUse = false;
+        if (table[hashValue] == null)
+            table[hashValue] = new LinkedList<>();
+
+        for (Object ob : table[hashValue]) {
+            Entry obj = (Entry) ob;
+            if (obj.key.equals(key)) {
+                obj.value = value;
+                return;
             }
         }
+        table[hashValue].add(e);
+
     }
 
     public Object get(Object key) {
         // null key not allowed
         if (key == null)
             return null;
-        // get the big integer corresponding to the object
-        int hashCode = key.hashCode();
+        // get the "big" integer corresponding to the object
+        int hashcode = key.hashCode();
         // compress down to a table slot
-        int hashValue = hash(hashCode);
-        // if slot given by hash not yet in use, return null
+        int hashValue = hash(hashcode);
+        // if slot given by has not yet in use, return ull
         if (table[hashValue] == null)
             return null;
-        // now look for the desired Entry, each index is a linked list,
+        // now look for the desire Entry, each index is a linked list,
         // so Iterator is used to retrieve the correct match
-        Entry e = null;
-        for (Iterator it = table[hashValue].iterator(); it.hasNext();) {
-            e = (Entry) it.next();
-            if (e.key.equals(key)) {
-                return e.value;
+        for (Object o : table[hashValue]) {
+            Entry oo = (Entry) o;
+            if (oo.key.equals(key)) {
+                return oo;
             }
         }
+        // for (Iterator it = table[hashValue].iterator(); it.hasNext();) {
+        // e = (Entry) it.next();
+        // if (e.key.equals(key)) {
+        // return e.value;
+        // }
+        // }
         return null;
     }
 
-    @Override
     public String toString() {
         String n = System.getProperty("line.separator");
         StringBuilder sb = new StringBuilder();
